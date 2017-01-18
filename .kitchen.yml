@@ -1,6 +1,20 @@
 ---
 driver:
-  name: vagrant
+  name: ec2
+  aws_ssh_key_id: learnchef
+  region: us-west-2
+  availability_zone: a
+  subnet_id: subnet-eacb348f
+  instance_type: m1.small
+  image_id: ami-c3b3b1f3
+  security_group_ids: ['sg-2d3b3b48']
+  retryable_tries: 120
+
+transport:
+  ssh_key: C:\Users\LearnChef\.ssh\learnchef.pem
+
+platforms:
+  - name: windows-2012r2
 
 provisioner:
   name: chef_zero
@@ -12,9 +26,9 @@ provisioner:
 verifier:
   name: inspec
 
-platforms:
-  - name: ubuntu-16.04
-  - name: centos-7.2
+# platforms:
+#   - name: ubuntu-16.04
+#   - name: centos-7.2
 
 suites:
   - name: default
